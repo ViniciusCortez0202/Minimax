@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:get_it/get_it.dart';
 import 'package:minimax/jogo_da_velha/box.dart';
 import 'package:minimax/jogo_da_velha/controller.dart';
 
@@ -13,9 +14,11 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   bool turn = false;
-  final controller = Controller();
+  GetIt getIt = GetIt.instance;
+  late Controller controller;
   @override
   Widget build(BuildContext context) {
+    controller = getIt<Controller>();
     return Scaffold(
       appBar: AppBar(),
       body: Container(
@@ -48,7 +51,7 @@ class _HomeState extends State<Home> {
     var list = List<Widget>.empty(growable: true);
     for (int j = i * 3; j < (i * 3) + 3; j++) {
       list.add(Box(type: draw, controller: controller, index: (j + 1)));
-      if ((j+1) % 3 != 0) list.add(const VerticalDivider());
+      if ((j + 1) % 3 != 0) list.add(const VerticalDivider());
     }
     return list;
   }

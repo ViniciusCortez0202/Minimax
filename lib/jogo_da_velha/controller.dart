@@ -10,4 +10,8 @@ class Controller {
     _game.insert(index, player);
     indexGame.value = index;
   }
+
+  gameClone(){
+    return _game.toList();
+  }
 }
